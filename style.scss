@@ -1,0 +1,65 @@
+/* To compile scss file in real time click on 'Watch Sass' in the bottom-right */ 
+// Comment hotkey: Ctrl+k+c and Ctrl+k+u to comment off
+
+$color1: #CBCE91FF;
+$color2: #EA738DFF;
+
+*, *::before, *::after { // selecting all element, including before and after elements
+    box-sizing: border-box; // easier to size our elements
+    font-family: Gotham Rounded, sans-serif;
+    font-weight: normal;
+}
+
+body{
+    margin: 0; // so our background fills the entire screen
+    padding: 0;
+    background: linear-gradient(to right, $color1, $color2) 
+}
+
+.calculator-grid {
+    display: grid; // use grid, so we can use grid-template
+    justify-content: center; // center every thing
+    align-content: center;
+    //align-items: center;
+    min-height: 100vh; // the calculator doesnt take the full height without this. Use 100% of the height all the time
+    grid-template-columns: repeat(4, 100px); // 4 coulumns with width 100px
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px); // minimum 120 px tall, and maximum auto
+    // that way it can grow larger if the number is large. 5 rows with height 100px
+
+    button {
+        cursor: pointer;
+        font-size: 2rem;
+        border: 1px, solid #FFFFFF;
+        outline: none; // the line encapsulating the elements 
+        background-color: rbga(255, 255, 255, 0.75);
+    }
+    button:hover {
+        background-color: #a9a9a9;
+
+    }
+    .span-two {
+        grid-column: span 2; // span two grid elements wide
+        color: #adf802;
+        background-color: rgba(139, 0, 139, 0.8);
+    }
+    .output {
+        grid-column: 1 / -1; // go from 1st grid element in 4-column to last (-1) grid element
+        background-color: rgba(0, 0, 0, 0.75);
+        display: flex; // align elements in the container
+        align-items: flex-end; // flex-end is the right side of the container 
+        // justify-content: space-between; // put as much space between our elements as possible
+        justify-content: space-around; // push elements a pit closer to each other compared to space-between, and pushes elements away from top and bottom
+        flex-direction: column; // align vertically instead of horizontally
+        padding: 10px;
+        word-wrap: break-word; // to be able to break our word (the number displayed) in the middle of it, and not just in a space or the end of a word
+        word-break: break-all; // to be able to break all words
+        .previous-operand{
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.5rem;
+        }
+        .current-operand{
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 2.5rem;
+        }
+    }
+}
